@@ -1,16 +1,19 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Logo from './components/Logo.svelte';
-	import Menu from './components/Menu.svelte';
-	import Navigation from './components/Navigation.svelte';
-	import Restrict from './components/util/Restrict.svelte';
+	import Logo from '$lib/components/Logo.svelte';
+	import Menu from '$lib/components/Menu.svelte';
+	import Navigation from '$lib/components/Navigation.svelte';
+	import Restrict from '$lib/components/util/Restrict.svelte';
 
-	let solid = true;
+	export let data: App.Locals;
+
+	let scroll = 0;
+	$: solid = scroll <= 240;
 	let root = $page.url.pathname === '/';
 </script>
 
 <header
-	on:scroll={() => (solid = !root || scrollY >= 240)}
+	on:scroll={() => (scroll = window.scrollY)}
 	class="top-0 w-full z-50 font-serif transition-all duration-500"
 	style:background-color={`rgba(254, 243, 199, ${solid ? 0.8 : 0})`}
 	style:backdrop-filter={solid ? 'blur(4px)' : 'none'}
@@ -20,7 +23,7 @@
 	<Restrict
 		><div class="relative flex md:justify-center">
 			<Logo />
-			<Menu />
+			<Menu {data} />
 		</div>
 		<Navigation />
 	</Restrict>

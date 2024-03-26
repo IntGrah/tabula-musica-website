@@ -1,5 +1,5 @@
 <script>
-	import Restrict from './components/util/Restrict.svelte';
+	import Restrict from '$lib/components/util/Restrict.svelte';
 </script>
 
 <footer id="contact" class="px-8 bg-gray-900">

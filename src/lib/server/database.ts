@@ -1,87 +1,111 @@
-import { type CredentialsAccount, type Session, type User, PrismaClient } from '@prisma/client';
-import { createHash, randomUUID } from 'crypto';
-import bcryptjs from 'bcryptjs';
+import { type Account, type Session, type User, PrismaClient } from '@prisma/client';
+import { randomUUID } from 'crypto';
+import bcrypt from 'bcryptjs';
 import { NODE_ENV } from '$env/static/private';
 
-function sha256(sessionToken: string): string {
-	return createHash('sha256').update(sessionToken).digest('hex');
-}
-
-class PrismaDB extends PrismaClient {
-	/** @warning no production */
-	async reset(): Promise<void> {
-		await this.user.deleteMany();
-		await this.profile.deleteMany();
-		await this.credentialsAccount.deleteMany();
-		await this.googleAccount.deleteMany();
-		await this.session.deleteMany();
-
-		await this.user.create({
-			data: { email: 'deleteduser@example.com', role: 4 }
-		});
-		const { id } = await this.user.create({
-			data: { email: 'admin@example.com', role: 5 }
-		});
-		await this.credentialsAccount.create({
-			data: {
-				userId: id,
-				passwordHash: await bcryptjs.hash('password', 10)
-			}
-		});
-		await this.profile.create({
-			data: { userId: id, name: 'Admin', bio: 'I am an admin.' }
-		});
-		console.log('--- Database reset ---');
-	}
-
-	async getUser(email: string): Promise<User | null> {
-		return this.user.findUnique({ where: { email } });
-	}
-
-	async getSession(sessionToken: string): Promise<Session | null> {
-		const tokenHash = sha256(sessionToken);
-		return this.session.findUnique({
-			where: { tokenHash, expires: { gt: new Date() } }
-		});
-	}
-
-	async getCredentials(user: User): Promise<CredentialsAccount | null> {
-		return this.credentialsAccount.findUnique({
-			where: { userId: user.id }
-		});
-	}
-
-	async createSession(user: User): Promise<string> {
-		const sessionToken = randomUUID();
-		await this.session.create({
-			data: {
-				userId: user.id,
-				tokenHash: sha256(sessionToken),
-				expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
-			}
-		});
-		return sessionToken;
-	}
-
-	async deleteSessions(user: User): Promise<void> {
-		await this.session.deleteMany({
-			where: { userId: user.id }
-		});
-	}
-
-	async deleteExpiredSessions(user: User): Promise<void> {
-		await this.session.deleteMany({
-			where: { userId: user.id, expires: { lte: new Date() } }
-		});
-	}
-}
+const DAY = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 declare global {
-	var prismaDB: PrismaDB | undefined;
+	var prismaDB: PrismaClient | undefined;
 }
 
-const prisma = globalThis.prismaDB ?? new PrismaDB();
+const prisma = globalThis.prismaDB ?? new PrismaClient();
 
 if (NODE_ENV !== 'production') globalThis.prismaDB = prisma;
 
 export default prisma;
+
+export async function reset(): Promise<void> {
+	await prisma.user.deleteMany();
+	await prisma.account.deleteMany();
+	await prisma.session.deleteMany();
+	await prisma.user.create({
+		data: {
+			id: randomUUID(),
+			name: 'Deleted User',
+			email: 'deleteduser@example.com',
+			role: 'editor'
+		}
+	});
+	const admin = await prisma.user.create({
+		data: {
+			id: randomUUID(),
+			name: 'Admin User',
+			email: 'admin@example.com',
+			role: 'admin'
+		}
+	});
+	await prisma.account.create({
+		data: {
+			id: randomUUID(),
+			userId: admin.id,
+			provider: 'credentials',
+			passwordHash: await bcrypt.hash('password', 10),
+			isPrimary: true
+		}
+	});
+	console.log('--- Database reset ---');
+}
+
+export async function getUser(userId: string): Promise<User | null> {
+	return prisma.user.findUnique({ where: { id: userId } });
+}
+
+export async function getUserFromEmail(email: string): Promise<User | null> {
+	return prisma.user.findUnique({ where: { email } });
+}
+
+export async function getSession(sessionId: string): Promise<Session | null> {
+	return prisma.session.findUnique({
+		where: { id: sessionId, expiresAt: { gt: new Date() } }
+	});
+}
+
+export async function getCredentials(userId: string): Promise<Account | null> {
+	return prisma.account.findUnique({
+		where: { userId, provider: 'credentials' }
+	});
+}
+
+export async function createSession(userId: string): Promise<string> {
+	const sessionId = randomUUID();
+	await prisma.session.create({
+		data: {
+			id: sessionId,
+			userId,
+			expiresAt: new Date(Date.now() + 30 * DAY)
+		}
+	});
+	return sessionId;
+}
+
+export async function extendSession(sessionId: string): Promise<void> {
+	await prisma.session.update({
+		where: { id: sessionId, expiresAt: { gt: new Date() } },
+		data: { expiresAt: new Date(Date.now() + 30 * DAY) }
+	});
+}
+
+export async function extendSessionsShorterThan15Days(userId: string): Promise<void> {
+	await prisma.session.updateMany({
+		where: {
+			userId,
+			expiresAt: { lte: new Date(Date.now() + 15 * DAY) }
+		},
+		data: { expiresAt: new Date(Date.now() + 30 * DAY) }
+	});
+}
+
+export async function deleteSession(id: string): Promise<void> {
+	await prisma.session.delete({ where: { id } });
+}
+
+export async function deleteAllSessions(userId: string): Promise<void> {
+	await prisma.session.deleteMany({ where: { userId } });
+}
+
+export async function deleteExpiredSessions(userId: string): Promise<void> {
+	await prisma.session.deleteMany({
+		where: { userId, expiresAt: { lte: new Date() } }
+	});
+}

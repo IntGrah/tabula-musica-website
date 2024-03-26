@@ -1,5 +1,15 @@
+<script>
+	export let form;
+</script>
+
 <div class="p-32">
 	<form method="POST" action="?/login">
+		{#if form?.incomplete}
+			<p class="text-red-500">Please fill in all fields!</p>
+		{/if}
+		{#if form?.invalid}
+			<p class="text-red-500">Invalid credentials!</p>
+		{/if}
 		<input type="email" name="email" placeholder="Email" required />
 		<br />
 		<input type="password" name="password" placeholder="Password" value="password" required />

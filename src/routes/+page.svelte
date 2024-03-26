@@ -1,5 +1,5 @@
 <script>
-	import Restrict from './components/util/Restrict.svelte';
+	import Restrict from '$lib/components/util/Restrict.svelte';
 </script>
 
 <figure class="h-80 sm:h-96 md:h-[28rem]">

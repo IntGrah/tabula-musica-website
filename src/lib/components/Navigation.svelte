@@ -1,5 +1,5 @@
 <script>
-	import Search from './Search.svelte';
+	import Search from '$lib/components/Search.svelte';
 
 	let navLinks = [
 		{ href: '/articles', text: 'Articles' },

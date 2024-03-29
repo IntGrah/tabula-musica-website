@@ -4,8 +4,9 @@ import prisma, {
 	getCredentials,
 	getUserFromEmail
 } from '$lib/server/database';
-import { fail, redirect, type Actions } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import bcrypt from 'bcryptjs';
+import type { Actions } from './$types';
 
 export const actions: Actions = {
 	login: async ({ cookies, request, url }) => {

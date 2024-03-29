@@ -16,8 +16,8 @@
 			{/if}
 		{/if}
 
-		<input type="email" name="email" placeholder="Email" required />
-		<input type="password" name="password" placeholder="Password" value="password" required />
+		<input class="input" type="email" name="email" placeholder="Email" required />
+		<input class="input" type="password" name="password" placeholder="Password" required />
 		<button>Log in</button>
 	</form>
 	<form method="POST" action="?/signup" use:enhance>
@@ -33,50 +33,34 @@
 			{/if}
 		{/if}
 
+		<input class="input" type="email" name="email" placeholder="Email" required />
 		<input
-			id="email-signup"
-			type="email"
-			name="email"
-			placeholder="Email"
-			value="newuser@example.com"
-			required
-		/>
-		<input type="password" name="password" placeholder="Password" value="password" required />
-		<input
+			class="input"
 			type="password"
-			name="confirmPassword"
-			placeholder="Confirm password"
+			name="password"
+			placeholder="Password"
 			value="password"
 			required
 		/>
-		<input type="text" name="name" placeholder="Name" value="Jane Doe" required />
+		<input
+			class="input"
+			type="password"
+			name="confirmPassword"
+			placeholder="Confirm password"
+			required
+		/>
+		<input class="input" type="text" name="name" placeholder="Name" value="Jane Doe" required />
 		<p>Would you like to subscribe to our mailing list?</p>
-		<input type="checkbox" name="mailingList" />
+		<input class="block size-6" type="checkbox" name="mailingList" />
 		<button>Sign up</button>
 	</form>
 </div>
 
 <style lang="postcss">
-	input[type='email'],
-	input[type='password'],
-	input[type='text'] {
-		@apply block h-10 px-4 w-full max-w-72
-        text-gray-700
-        bg-black/5 focus:bg-black/10
-        outline-none rounded-lg
-        border border-transparent focus:border-gray-400
-        transition-all
-        placeholder:text-gray-500 focus:placeholder:text-gray-600;
-	}
-
 	button {
 		@apply h-10 px-4
         bg-black/5 hover:bg-black/20
         rounded-lg tracking-wider;
-	}
-
-	input[type='checkbox'] {
-		@apply block size-6;
 	}
 
 	input,

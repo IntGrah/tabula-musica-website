@@ -4,11 +4,13 @@
 	const links = [
 		{ href: '/settings/account', text: 'Account' },
 		{ href: '/settings/profile', text: 'Profile' },
-		{ href: '/settings/subscription', text: 'Subscription' },
-		{ href: '/settings/404', text: '404' }
+		{ href: '/settings/subscription', text: 'Subscription' }
 	];
 </script>
 
-<Navigation title="Settings" {links}>
+<div class="mx-auto max-w-6xl px-8">
+	<h2 class="mb-4 mt-4 text-2xl">Settings</h2>
+	<hr class="mb-4" />
+	<Navigation {links} />
 	<slot />
-</Navigation>
+</div>

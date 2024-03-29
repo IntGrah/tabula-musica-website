@@ -8,7 +8,7 @@
 
 <h3 class="text-3xl mb-4">Subscription</h3>
 <div class="max-w-3xl">
-	<section class="mb-8">
+	<section class="flex flex-wrap mb-8">
 		<hgroup>
 			<h4>Paper edition</h4>
 			{#if isSubscriber(user.role)}
@@ -16,7 +16,7 @@
 			{/if}
 		</hgroup>
 		<div class="grow">
-			<button>Change</button>
+			<button class="float-right settings-button">Manage subscription</button>
 		</div>
 	</section>
 	<hr class="mb-8" />
@@ -26,6 +26,7 @@
 			<p>Dolor sit amet consectetur</p>
 		</hgroup>
 	</section>
+	<hr class="mb-8" />
 </div>
 
 <style lang="postcss">

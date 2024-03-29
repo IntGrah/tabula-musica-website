@@ -1,11 +1,12 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte';
+	import Modal from '$lib/components/Modal.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 	const user = data.user!;
 
 	let bio = user.bio ?? '';
+	let nameModal: HTMLDialogElement;
 </script>
 
 <h3 class="text-3xl mb-4">Profile</h3>
@@ -16,7 +17,9 @@
 			<p>{user.name}</p>
 		</hgroup>
 		<div class="grow py-2">
-			<Button>Change</Button>
+			<button class="float-right settings-button" on:click={() => nameModal.showModal()}
+				>Change</button
+			>
 		</div>
 	</section>
 	<section class="mb-8">
@@ -24,13 +27,17 @@
 			<h4>About</h4>
 			<p>A short introduction shown on your profile</p>
 		</hgroup>
-		<textarea
-			class="mb-2 w-full min-h-24 max-h-96 p-2 rounded"
-			placeholder="Write about yourself..."
-			maxlength="240"
-			bind:value={bio}
-		/>
-		<p class="text-sm text-gray-400">{240 - bio.length} Characters left</p>
+		<form method="POST" action="?/updatebio">
+			<textarea
+				class="input py-2 mb-2 w-full min-h-24 max-h-80 rounded"
+                name="bio"
+				placeholder="Write about yourself..."
+				maxlength="240"
+				bind:value={bio}
+			/>
+			<p class="mb-2 text-sm text-gray-400">{240 - bio.length} Characters left</p>
+			<button class="settings-button">Save</button>
+		</form>
 	</section>
 	{#if 2 + 2 === 5}
 		<section class="mb-8">
@@ -45,16 +52,25 @@
 		</section>
 	{/if}
 	<hr class="mb-8" />
-	<section class="mb-8">
-		<hgroup>
-			<h4>Delete Account</h4>
-			<p>Permanently delete this account, along with all its associated data</p>
-		</hgroup>
-		<div>
-			<button id="text-red-500">Delete</button>
-		</div>
-	</section>
 </div>
+
+<Modal bind:dialog={nameModal}>
+	<h3 class="mb-4 text-2xl">Change your name</h3>
+	<hr class="mb-4" />
+	<form method="POST" action="?/updatename">
+		<input
+			class="mb-4 w-full h-10 input"
+			type="text"
+			name="name"
+			placeholder="Name"
+            autocomplete="off"
+			value={user.name}
+		/>
+		<div>
+			<button class="mb-4 settings-button">Save</button>
+		</div>
+	</form>
+</Modal>
 
 <style lang="postcss">
 	hgroup h4 {

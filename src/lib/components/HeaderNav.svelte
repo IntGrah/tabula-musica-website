@@ -2,8 +2,8 @@
 	const navLinks = [
 		{ href: '/articles', text: 'Articles' },
 		{ href: '/events', text: 'Events' },
-		{ href: '/#about', text: 'About' },
-		{ href: '/profile', text: 'Profile' }
+		{ href: '/about', text: 'About' },
+		{ href: '/settings/profile', text: 'Profile' }
 	];
 </script>
 

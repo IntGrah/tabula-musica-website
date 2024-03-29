@@ -27,7 +27,8 @@ export const load: PageServerLoad = async ({ url }) => {
 		skip: page * size,
 		take: size
 	});
+	const usersTotal = await prisma.user.count();
 	const ms = Date.now() - start;
 
-	return { users, ms, page, size };
+	return { users, usersTotal, ms, page, size };
 };

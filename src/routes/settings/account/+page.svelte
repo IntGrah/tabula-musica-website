@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import type { PageData } from './$types';
 
@@ -18,7 +17,7 @@
 			<p>{user?.email}</p>
 		</hgroup>
 		<div class="grow py-2">
-			<Button on:click={() => emailModal.showModal()}>Change</Button>
+			<button class="float-right settings-button" on:click={() => emailModal.showModal()}>Change</button>
 		</div>
 	</section>
 	{#if credentials}
@@ -28,7 +27,7 @@
 				<p>Password must be at least 8 characters long</p>
 			</hgroup>
 			<div class="grow py-2">
-				<Button on:click={() => passwordModal.showModal()}>Change</Button>
+				<button class="float-right settings-button" on:click={() => passwordModal.showModal()}>Change</button>
 			</div>
 		</section>
 	{/if}
@@ -39,7 +38,7 @@
 				<p>Account linked to Google</p>
 			</hgroup>
 			<div class="grow py-2">
-				<Button>Disconnect</Button>
+				<button class="float-right settings-button">Disconnect</button>
 			</div>
 		</section>
 	{/if}
@@ -50,7 +49,9 @@
 			<p>Permanently delete this account, along with all its associated data</p>
 		</hgroup>
 		<div class="grow py-2">
-			<Button on:click={() => deleteAccountModal.showModal()}>Change</Button>
+			<button class="float-right settings-button" on:click={() => deleteAccountModal.showModal()}>
+				Delete
+			</button>
 		</div>
 	</section>
 </div>
@@ -59,8 +60,8 @@
 	<h3 class="mb-4 text-2xl">Change your email address</h3>
 	<hr class="mb-4" />
 	<form>
-		<input class="mb-4" type="password" placeholder="Current password" required />
-		<input type="email" placeholder="New email" required />
+		<input class="mb-4 w-full h-10 input" type="password" placeholder="Current password" required />
+		<input class="mb-4 w-full h-10 input" type="email" placeholder="New email" required />
 	</form>
 </Modal>
 
@@ -68,7 +69,7 @@
 	<h3 class="mb-4 text-2xl">Change your password</h3>
 	<hr class="mb-4" />
 	<form>
-		<input class="mb-4" type="password" placeholder="Current password" required />
+		<input class="mb-4 w-full h-10 input" type="password" placeholder="Current password" required />
 		<hr class="mb-4" />
 		<p>New password must</p>
 		<ul class="mb-4">
@@ -77,12 +78,30 @@
 			<li>Contain at least one lowercase letter</li>
 			<li>Contain at least one number</li>
 		</ul>
-		<input class="mb-4" type="password" placeholder="New password" required />
-		<input class="mb-4" type="password" placeholder="Confirm new password" required />
+		<input class="mb-4 w-full h-10 input" type="password" placeholder="New password" required />
+		<input
+			class="mb-4 w-full h-10 input"
+			type="password"
+			placeholder="Confirm new password"
+			required
+		/>
 	</form>
 </Modal>
 
-<Modal bind:dialog={deleteAccountModal}>C</Modal>
+<Modal bind:dialog={deleteAccountModal}>
+	<h3 class="mb-4 text-2xl">Delete account</h3>
+	<hr class="mb-4" />
+	<h5 class="mb-4 text-red-600 font-bold">Warning: this is a destructive action!</h5>
+	<p class="mb-4">
+		All data associated with this account will be deleted, including any active subscriptions,
+		comments, articles, and profile information.
+	</p>
+	<hr class="mb-4" />
+	<form>
+		<p class="mb-4">To confirm, please type your password</p>
+		<input class="mb-4 w-full h-10 input" placeholder="Password" autocomplete="off" required />
+	</form>
+</Modal>
 
 <style lang="postcss">
 	section {
@@ -98,7 +117,7 @@
 		@apply text-gray-500 tracking-wide;
 	}
 
-    li {
-        @apply ml-4 list-disc;
-    }
+	li {
+		@apply ml-4 list-disc;
+	}
 </style>

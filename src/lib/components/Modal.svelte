@@ -12,12 +12,12 @@
 		<img src="/icons/close.svg" alt="Close" />
 	</button>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="px-8 py-4 bg-amber-50 text-gray-700" on:click|stopPropagation>
+	<div class="size-full px-8 py-4 bg-amber-50 text-gray-700" on:click|stopPropagation>
 		<slot />
 	</div>
 </dialog>
 
-<style lang="postcss">
+<!-- <style lang="postcss">
 	:global(input) {
 		@apply block h-10 px-4 w-full
         text-gray-700
@@ -27,4 +27,4 @@
         transition-all
         placeholder:text-gray-500 focus:placeholder:text-gray-600;
 	}
-</style>
+</style> -->

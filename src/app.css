@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input {
+	@apply block px-4
+    text-gray-700 focus:text-gray-800
+    bg-black/5 focus:bg-black/10
+    outline-none rounded-lg
+    border border-transparent focus:border-gray-400
+    transition-all
+    placeholder:text-gray-500 focus:placeholder:text-gray-600;
+}
+
+.settings-button {
+	@apply block h-10 px-4
+    items-center rounded-full
+    border border-cyan-600 hover:bg-cyan-50/50
+    text-cyan-800 tracking-wider;
+}

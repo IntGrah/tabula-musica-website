@@ -1,5 +1,5 @@
-import { redirect, type Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
+import type { Actions, PageServerLoad } from './$types';
 import { deleteSession } from '$lib/server/database';
 
 export const load: PageServerLoad = ({ locals }) => {

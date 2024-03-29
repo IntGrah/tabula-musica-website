@@ -6,14 +6,14 @@
 	const { user } = data;
 </script>
 
-<ul class="absolute top-0 flex justify-end right-4 h-full py-4 max-sm:hidden">
+<ul class="absolute top-0 flex justify-end right-4 h-full py-4 max-xs:hidden">
 	<li class="flex">
 		<a
 			class="flex px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
 			href="/subscribe"
 		>
 			{#if user && isSubscriber(user.role)}
-				&#129299;
+				Subscribed
 			{:else}
 				Subscribe
 			{/if}
@@ -23,7 +23,7 @@
 	<li class="flex">
 		<a
 			class="flex px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
-			href={user ? '/profile' : '/login'}
+			href="/settings/profile"
 		>
 			{#if user}
 				{user.name}

@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { User } from '@prisma/client';
+	import type { PageServerData } from './$types';
 
-	export let data: App.Locals;
-	// Server hooks do this job
-	const user = data.user as User;
+	export let data: PageServerData;
+	const user = data.user!;
 </script>
 
 <div class="py-16 text-5xl text-center text-cyan-800">

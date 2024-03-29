@@ -1,19 +1,35 @@
 <script>
-	// import { handleSearch } from "@/app/lib/actions";
 	import { page } from '$app/stores';
+
 	let query = $page.url.searchParams.get('q');
 </script>
 
-<search class="absolute right-4 h-full py-1 max-sm:hidden">
+<search class="absolute top-0 right-4 h-full py-1 max-sm:hidden">
 	<form class="h-full" action="/search">
-		<label class="sr-only"
-			>Search articles
-			<input
-				name="q"
-				class="h-full px-4 w-36 focus:w-48 text-cyan-800 bg-black/5 outline-none rounded-lg border border-transparent transition-all focus:border-gray-400 focus:bg-black/10 placeholder:text-gray-500 focus:placeholder:text-gray-600"
-				placeholder="Search articles..."
-				value={query ?? ''}
-			/>
-		</label>
+		<label class="sr-only" for="search">Search articles</label>
+		<input
+			id="search"
+			name="q"
+			placeholder="Search articles..."
+			spellcheck="false"
+			autocorrect="off"
+			autocomplete="off"
+			autocapitalize="none"
+			required
+			on:invalid={(e) => e.preventDefault()}
+			value={query ?? ''}
+		/>
 	</form>
 </search>
+
+<style lang="postcss">
+	input {
+		@apply h-full px-4 w-36 focus:w-48
+        text-gray-700
+        bg-black/5 focus:bg-black/10
+        outline-none rounded-lg
+        border border-transparent focus:border-gray-400
+        transition-all
+        placeholder:text-gray-500 focus:placeholder:text-gray-600;
+	}
+</style>

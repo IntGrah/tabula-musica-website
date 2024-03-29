@@ -1,4 +1,4 @@
-<div class="relative h-16 px-8 text-center">
+<div class="relative px-8 text-center">
 	<div class="py-4">
 		<a
 			class="font-medium text-2xl tracking-[0.2em] uppercase text-violet-900 select-none"
@@ -7,5 +7,5 @@
 			Tabula&nbsp;Musica
 		</a>
 	</div>
-	<hr class="absolute bottom-2 left-[15%] w-[70%] border-violet-900" />
+	<hr class="absolute -bottom-2 left-[15%] w-[70%] border-violet-900" />
 </div>

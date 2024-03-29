@@ -12,13 +12,13 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const email = formData.get('email') as string;
 		const password = formData.get('password') as string;
-		if (!email || !password) return fail(400, { incomplete: true });
+		if (!email || !password) return fail(400, { type: 'login', incomplete: true });
 		const user = await getUserFromEmail(email);
-		if (!user) return fail(400, { invalid: true });
+		if (!user) return fail(400, { type: 'login', invalid: true });
 		const account = await getCredentials(user.id);
-		if (!account) return fail(403, { oauth: true });
+		if (!account) return fail(403, { type: 'login', oauth: true });
 		const valid = await bcrypt.compare(password, account.passwordHash!);
-		if (!valid) return fail(400, { invalid: true });
+		if (!valid) return fail(400, { type: 'login', invalid: true });
 		await deleteAllSessions(user.id);
 		const sessionId = await createSession(user.id);
 		cookies.set('_TMST', sessionId, { path: '/' });
@@ -34,9 +34,9 @@ export const actions: Actions = {
 		const confirmPassword = formData.get('confirmPassword') as string;
 		const name = formData.get('name') as string;
 		const mailingList = formData.get('mailingList') === 'on';
-		if (password !== confirmPassword) return fail(400, { mismatch: true });
+		if (password !== confirmPassword) return fail(400, { type: 'signup', mismatch: true });
 		const existingUser = await getUserFromEmail(email);
-		if (existingUser) return fail(400, { alreadyExists: true });
+		if (existingUser) return fail(400, { type: 'signup', alreadyExists: true });
 		const user = await prisma.user.create({
 			data: {
 				email,
@@ -59,14 +59,6 @@ export const actions: Actions = {
 		const redirectPath = url.searchParams.get('redirect');
 		if (redirectPath) redirect(303, redirectPath);
 		else redirect(303, url.pathname);
-	},
-
-	async handleSearch({ request }) {
-		const formData = await request.formData();
-		let query = formData.get('search') as string;
-		query = query.trim();
-		if (!query) return fail(400, { incomplete: true });
-		redirect(303, `/search?q=${query}`);
 	}
 };
 

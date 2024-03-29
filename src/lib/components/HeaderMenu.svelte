@@ -1,15 +1,18 @@
 <script lang="ts">
+	import { isSubscriber } from '$lib/util';
+
 	export let data: App.Locals;
+
 	const { user } = data;
 </script>
 
-<menu class="absolute top-0 flex justify-end right-4 h-16 py-4 max-sm:hidden">
+<ul class="absolute top-0 flex justify-end right-4 h-full py-4 max-sm:hidden">
 	<li class="flex">
 		<a
 			class="flex px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
 			href="/subscribe"
 		>
-			{#if user && ['subscriber', 'editor', 'admin'].includes(user.role)}
+			{#if user && isSubscriber(user.role)}
 				&#129299;
 			{:else}
 				Subscribe
@@ -29,4 +32,4 @@
 			{/if}
 		</a>
 	</li>
-</menu>
+</ul>

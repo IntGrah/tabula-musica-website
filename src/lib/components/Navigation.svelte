@@ -1,24 +1,25 @@
-<script>
-	import Search from '$lib/components/Search.svelte';
-
-	let navLinks = [
-		{ href: '/articles', text: 'Articles' },
-		{ href: '/events', text: 'Events' },
-		{ href: '/#about', text: 'About' },
-		{ href: '/profile', text: 'Profile' }
-	];
+<script lang="ts">
+	export let title: string;
+	export let links: { href: string; text: string }[];
 </script>
 
-<nav class="relative flex px-4 md:justify-center">
-	{#each navLinks as { href, text }}
-		<a class="relative w-20 lg:w-28 xl:w-32 py-3 text-center group" {href}>
-			<span class="tracking-wider text-cyan-800 group-hover:text-cyan-600">
-				{text}
-			</span>
-			<hr
-				class="absolute bottom-2 left-1/2 w-0 border-cyan-500 transition-all group-hover:left-[20%] group-hover:w-[60%]"
-			/>
-		</a>
-	{/each}
-	<Search />
-</nav>
+<div class="mx-auto max-w-6xl px-8">
+	<h2 class="mb-4 mt-4 text-2xl">{title}</h2>
+
+	<nav class="mb-4 relative flex flex-wrap">
+		{#each links as { href, text }}
+			<a class="relative px-4 py-3 group" {href}>
+				<span class="tracking-wider group-hover:text-gray-500">
+					{text}
+				</span>
+				<hr
+					class="absolute -bottom-2 left-1/2 w-0 border-gray-600 transition-all group-hover:left-[20%] group-hover:w-[60%]"
+				/>
+			</a>
+		{/each}
+	</nav>
+
+	<hr class="mb-4" />
+
+	<slot />
+</div>

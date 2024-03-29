@@ -1,0 +1,1 @@
+<div class="bg-amber-100/30"><slot/></div>

@@ -8,7 +8,7 @@
 	<form class="h-full" action="/search">
 		<input
 			name="q"
-            class="input w-36 focus:w-48"
+            class="input w-36 focus:w-48 h-10"
 			placeholder="Search articles..."
 			spellcheck="false"
 			autocorrect="off"

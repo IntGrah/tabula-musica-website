@@ -1,4 +1,4 @@
-<div class="relative pt-32 h-80 sm:h-96 md:h-[28rem]">
+<div class="relative pt-48 h-80 sm:h-96 md:h-[28rem]">
 	<figure class="absolute top-0">
 		<img
 			class="size-full object-cover opacity-20"
@@ -6,7 +6,15 @@
 			alt="Manuscript of The Art of Fugue"
 		/>
 	</figure>
-    <p class="px-8 text-xl">Changelog:</p>
+	<div class="px-8">
+		<h3 class="text-xl">Changelog</h3>
+		<ul>
+			<li class="ml-4 list-disc">Added authentication</li>
+			<li class="ml-4 list-disc">Settings interface</li>
+			<li class="ml-4 list-disc">Admin interface</li>
+		</ul>
+		<a href="https://github.com/IntGrah/tm">GitHub (Currently private)</a>
+	</div>
 </div>
 <hgroup class="md:px-16">
 	<div class="mx-auto max-w-6xl">

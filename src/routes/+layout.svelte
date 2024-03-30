@@ -4,11 +4,12 @@
 	import Logo from '$lib/components/Logo.svelte';
 	import HeaderMenu from '$lib/components/HeaderMenu.svelte';
 	import HeaderNav from '$lib/components/HeaderNav.svelte';
+	import Search from '$lib/components/Search.svelte';
+	import type { LayoutData } from './$types';
 
 	import '../app.css';
-	import Search from '$lib/components/Search.svelte';
 
-	export let data: App.Locals;
+	export let data: LayoutData;
 </script>
 
 <svelte:head>

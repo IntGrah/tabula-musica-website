@@ -9,10 +9,12 @@ import bcrypt from 'bcryptjs';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
-	login: async ({ cookies, request, url }) => {
+	async login({ cookies, request, url }) {
 		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+		const email = formData.get('email');
+		const password = formData.get('password');
+		if (typeof email !== 'string' || typeof password !== 'string')
+			return fail(400, { type: 'login', malformed: true });
 		if (!email || !password) return fail(400, { type: 'login', incomplete: true });
 		const user = await getUserFromEmail(email);
 		if (!user) return fail(400, { type: 'login', invalid: true });
@@ -28,12 +30,21 @@ export const actions: Actions = {
 		else redirect(303, url.pathname);
 	},
 
-	signup: async ({ cookies, request, url }) => {
+	async signup({ cookies, request, url }) {
 		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
-		const confirmPassword = formData.get('confirmPassword') as string;
-		const name = formData.get('name') as string;
+		const email = formData.get('email');
+		const password = formData.get('password');
+		const confirmPassword = formData.get('confirmPassword');
+		const name = formData.get('name');
+		if (
+			typeof email !== 'string' ||
+			typeof password !== 'string' ||
+			typeof confirmPassword !== 'string' ||
+			typeof name !== 'string'
+		)
+			return fail(400, { type: 'signup', malformed: true });
+		if (!email || !password || !confirmPassword || !name)
+			return fail(400, { type: 'signup', incomplete: true });
 		const mailingList = formData.get('mailingList') === 'on';
 		if (password !== confirmPassword) return fail(400, { type: 'signup', mismatch: true });
 		const existingUser = await getUserFromEmail(email);

@@ -1,10 +1,17 @@
 <script>
-	import Article from './Article.svelte';
+	import LoremCard from './LoremCard.svelte';
 </script>
 
-<div class="mx-auto max-w-6xl bg-amber-50">
-	<article class="mx-auto max-w-3xl p-6 prose prose-gray prose-sm sm:prose-base md:prose-lg">
-		<Article />
-	</article>
-	<hr />
+<div class="mx-auto max-w-6xl px-8 py-4">
+	<h1 class="mb-4 text-4xl">Articles</h1>
+	<div class="flex max-md:flex-col gap-x-4">
+		<LoremCard />
+
+		<div class="shrink-0 grow md:w-96 flex md:flex-col gap-x-4">
+			<LoremCard />
+			<LoremCard />
+		</div>
+	</div>
+
+	<LoremCard />
 </div>

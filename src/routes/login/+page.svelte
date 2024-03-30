@@ -16,8 +16,8 @@
 			{/if}
 		{/if}
 
-		<input class="input" type="email" name="email" placeholder="Email" required />
-		<input class="input" type="password" name="password" placeholder="Password" required />
+		<input class="h-10 input" type="email" name="email" placeholder="Email" required />
+		<input class="h-10 input" type="password" name="password" placeholder="Password" required />
 		<button>Log in</button>
 	</form>
 	<form method="POST" action="?/signup" use:enhance>
@@ -33,9 +33,9 @@
 			{/if}
 		{/if}
 
-		<input class="input" type="email" name="email" placeholder="Email" required />
+		<input class="h-10 input" type="email" name="email" placeholder="Email" required />
 		<input
-			class="input"
+			class="h-10 input"
 			type="password"
 			name="password"
 			placeholder="Password"
@@ -43,13 +43,13 @@
 			required
 		/>
 		<input
-			class="input"
+			class="h-10 input"
 			type="password"
 			name="confirmPassword"
 			placeholder="Confirm password"
 			required
 		/>
-		<input class="input" type="text" name="name" placeholder="Name" value="Jane Doe" required />
+		<input class="h-10 input" type="text" name="name" placeholder="Name" value="Jane Doe" required />
 		<p>Would you like to subscribe to our mailing list?</p>
 		<input class="block size-6" type="checkbox" name="mailingList" />
 		<button>Sign up</button>

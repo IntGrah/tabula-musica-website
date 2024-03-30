@@ -8,7 +8,7 @@ export const load: PageServerLoad = ({ locals }) => {
 };
 
 export const actions: Actions = {
-	signout: async ({ cookies, url }) => {
+	async signout({ cookies, url }) {
 		const sessionId = cookies.get('_TMST');
 		if (sessionId) deleteSession(sessionId);
 		cookies.delete('_TMST', { path: '/' });

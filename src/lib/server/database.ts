@@ -1,5 +1,4 @@
 import { type Account, type Session, type User, PrismaClient } from '@prisma/client';
-import { randomUUID } from 'crypto';
 import bcrypt from 'bcryptjs';
 import { NODE_ENV } from '$env/static/private';
 
@@ -21,7 +20,6 @@ export async function reset(): Promise<void> {
 	await prisma.session.deleteMany();
 	await prisma.user.create({
 		data: {
-			id: randomUUID(),
 			name: 'Deleted User',
 			email: 'deleteduser@example.com',
 			role: 'editor'
@@ -29,7 +27,6 @@ export async function reset(): Promise<void> {
 	});
 	const admin = await prisma.user.create({
 		data: {
-			id: randomUUID(),
 			name: 'Admin User',
 			email: 'admin@example.com',
 			role: 'admin'
@@ -37,7 +34,6 @@ export async function reset(): Promise<void> {
 	});
 	await prisma.account.create({
 		data: {
-			id: randomUUID(),
 			userId: admin.id,
 			provider: 'credentials',
 			passwordHash: await bcrypt.hash('password', 10),
@@ -68,15 +64,13 @@ export async function getCredentials(userId: string): Promise<Account | null> {
 }
 
 export async function createSession(userId: string): Promise<string> {
-	const sessionId = randomUUID();
-	await prisma.session.create({
+	const session = await prisma.session.create({
 		data: {
-			id: sessionId,
 			userId,
 			expiresAt: new Date(Date.now() + 30 * DAY)
 		}
 	});
-	return sessionId;
+	return session.id;
 }
 
 export async function extendSession(sessionId: string): Promise<void> {

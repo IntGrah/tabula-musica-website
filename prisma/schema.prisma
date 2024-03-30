@@ -34,8 +34,8 @@ model User {
   email            String            @unique(map: "email")
   role             User_role
   name             String
-  image            String?           @db.Text
-  bio              String?           @db.Text
+  image            String?
+  bio              String            @default("") @db.VarChar(255)
   mailingList      Boolean           @default(false)
   createdAt        DateTime          @default(now()) @db.Timestamp(0)
   accessedAt       DateTime          @default(now()) @db.Timestamp(0)

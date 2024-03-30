@@ -16,8 +16,10 @@
 			<h4>Email address</h4>
 			<p>{user?.email}</p>
 		</hgroup>
-		<div class="grow py-2">
-			<button class="float-right settings-button" on:click={() => emailModal.showModal()}>Change</button>
+		<div class="grow">
+			<button class="mt-2 float-right settings-button" on:click={() => emailModal.showModal()}
+				>Change</button
+			>
 		</div>
 	</section>
 	{#if credentials}
@@ -26,8 +28,10 @@
 				<h4>Password</h4>
 				<p>Password must be at least 8 characters long</p>
 			</hgroup>
-			<div class="grow py-2">
-				<button class="float-right settings-button" on:click={() => passwordModal.showModal()}>Change</button>
+			<div class="grow">
+				<button class="mt-2 float-right settings-button" on:click={() => passwordModal.showModal()}
+					>Change</button
+				>
 			</div>
 		</section>
 	{/if}
@@ -37,8 +41,8 @@
 				<h4>Connected to Google</h4>
 				<p>Account linked to Google</p>
 			</hgroup>
-			<div class="grow py-2">
-				<button class="float-right settings-button">Disconnect</button>
+			<div class="grow">
+				<button class="mt-2 float-right settings-button">Disconnect</button>
 			</div>
 		</section>
 	{/if}
@@ -48,8 +52,8 @@
 			<h4>Delete Account</h4>
 			<p>Permanently delete this account, along with all its associated data</p>
 		</hgroup>
-		<div class="grow py-2">
-			<button class="float-right settings-button" on:click={() => deleteAccountModal.showModal()}>
+		<div class="grow">
+			<button class="mt-2 float-right settings-button" on:click={() => deleteAccountModal.showModal()}>
 				Delete
 			</button>
 		</div>
@@ -61,7 +65,9 @@
 	<hr class="mb-4" />
 	<form>
 		<input class="mb-4 w-full h-10 input" type="password" placeholder="Current password" required />
+		<p class="mb-4">A verification code will be sent to this email address.</p>
 		<input class="mb-4 w-full h-10 input" type="email" placeholder="New email" required />
+		<button class="mb-4 settings-button">Send verification code</button>
 	</form>
 </Modal>
 
@@ -85,6 +91,7 @@
 			placeholder="Confirm new password"
 			required
 		/>
+		<button class="mb-4 settings-button">Confirm</button>
 	</form>
 </Modal>
 
@@ -98,8 +105,9 @@
 	</p>
 	<hr class="mb-4" />
 	<form>
-		<p class="mb-4">To confirm, please type your password</p>
+		<p class="mb-4">To confirm, please type your password.</p>
 		<input class="mb-4 w-full h-10 input" placeholder="Password" autocomplete="off" required />
+		<button class="mb-4 settings-button">Delete account</button>
 	</form>
 </Modal>
 

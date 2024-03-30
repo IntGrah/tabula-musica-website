@@ -5,11 +5,15 @@
 				<h4 id="contact" class="mb-4 text-lg uppercase tracking-widest text-cyan-100">Contact</h4>
 				<p class="font-mono text-neutral-200">
 					<img class="inline" src="/icons/email.png" alt="Email icon" width={20} />
-					<a href="mailto:tabulamusica@cambridgesu.co.uk">tabulamusica@cambridgesu.co.uk</a>
+					<a class="tracking-tighter" href="mailto:tabulamusica@cambridgesu.co.uk">
+						tabulamusica@cambridgesu.co.uk
+					</a>
 				</p>
 				<p class="font-mono text-neutral-200">
 					<img class="inline" src="/icons/instagram.png" alt="Instagram logo" width={20} />
-					<a href="https://www.instagram.com/tabula_musica">@tabula_musica</a>
+					<a class="tracking-tighter" href="https://www.instagram.com/tabula_musica">
+						@tabula_musica
+					</a>
 				</p>
 			</hgroup>
 			<hgroup class="grow mb-4">

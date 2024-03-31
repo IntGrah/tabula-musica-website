@@ -1,15 +1,18 @@
 # tm
 
-## Run
+## Run (dev)
 
 ```bash
 npm run dev
 ```
 
+Open `localhost:3000`
+
+Set `.env`
 
 ```
-# /.env
-DATABASE_URL="mysql://root:<password>@localhost:3306/tm"
+NODE_ENV=development
+DATABASE_URL=mysql://root:<password>@localhost:3306/tm
 ```
 
 Login to MySQL, then

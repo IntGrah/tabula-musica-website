@@ -21,7 +21,7 @@
 			{/if}
 		</hgroup>
 		<div class="grow">
-			<button class="mt-2 float-right settings-button" on:click={() => subscriptionModal.showModal()}>
+			<button class="mt-2 float-right settings-button" on:click={void 0}>
 				Manage subscription
 			</button>
 		</div>
@@ -50,10 +50,10 @@
 	<h3 class="mb-4 text-2xl">Edit shipping address</h3>
 	<hr class="mb-4" />
 	<form>
-		<input class="mb-4 w-full h-10 input" placeholder="Address line 1" required />
-		<input class="mb-4 w-full h-10 input" placeholder="Address line 2" />
-		<input class="mb-4 w-full h-10 input" placeholder="Town/City" required />
-		<input class="mb-4 w-full h-10 input" placeholder="Postcode" required />
+		<input class="mb-4 w-full input" placeholder="Address line 1" required />
+		<input class="mb-4 w-full input" placeholder="Address line 2" />
+		<input class="mb-4 w-full input" placeholder="Town/City" required />
+		<input class="mb-4 w-full input" placeholder="Postcode" required />
         <button class="mb-4 settings-button">Save</button>
 	</form>
 </Modal>

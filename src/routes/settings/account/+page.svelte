@@ -64,9 +64,9 @@
 	<h3 class="mb-4 text-2xl">Change your email address</h3>
 	<hr class="mb-4" />
 	<form>
-		<input class="mb-4 w-full h-10 input" type="password" placeholder="Current password" required />
+		<input class="mb-4 w-full input" type="password" placeholder="Current password" required />
 		<p class="mb-4">A verification code will be sent to this email address.</p>
-		<input class="mb-4 w-full h-10 input" type="email" placeholder="New email" required />
+		<input class="mb-4 w-full input" type="email" placeholder="New email" required />
 		<button class="mb-4 settings-button">Send verification code</button>
 	</form>
 </Modal>
@@ -75,7 +75,7 @@
 	<h3 class="mb-4 text-2xl">Change your password</h3>
 	<hr class="mb-4" />
 	<form>
-		<input class="mb-4 w-full h-10 input" type="password" placeholder="Current password" required />
+		<input class="mb-4 w-full input" type="password" placeholder="Current password" required />
 		<hr class="mb-4" />
 		<p>New password must</p>
 		<ul class="mb-4">
@@ -84,9 +84,9 @@
 			<li>Contain at least one lowercase letter</li>
 			<li>Contain at least one number</li>
 		</ul>
-		<input class="mb-4 w-full h-10 input" type="password" placeholder="New password" required />
+		<input class="mb-4 w-full input" type="password" placeholder="New password" required />
 		<input
-			class="mb-4 w-full h-10 input"
+			class="mb-4 w-full input"
 			type="password"
 			placeholder="Confirm new password"
 			required
@@ -106,7 +106,7 @@
 	<hr class="mb-4" />
 	<form>
 		<p class="mb-4">To confirm, please type your password.</p>
-		<input class="mb-4 w-full h-10 input" placeholder="Password" autocomplete="off" required />
+		<input class="mb-4 w-full input" placeholder="Password" autocomplete="off" required />
 		<button class="mb-4 settings-button">Delete account</button>
 	</form>
 </Modal>

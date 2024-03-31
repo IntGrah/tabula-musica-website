@@ -6,30 +6,25 @@
 	const { user } = data;
 </script>
 
-<ul class="absolute top-0 flex justify-end right-4 h-full py-4 max-xs:hidden">
-	<li class="flex">
-		<a
-			class="flex px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
-			href="/subscribe"
-		>
-			{#if user && isSubscriber(user.role)}
-				Subscribed
-			{:else}
-				Subscribe
-			{/if}
-		</a>
-	</li>
-	<div class="mx-2 h-full border-l border-violet-800" />
-	<li class="flex">
-		<a
-			class="flex px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
-			href="/settings/profile"
-		>
-			{#if user}
-				{user.name}
-			{:else}
-				Log in
-			{/if}
-		</a>
-	</li>
-</ul>
+<nav class="float-right h-16 py-4 max-xs:hidden">
+	<a
+		class="inline-flex h-8 px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
+		href="/subscribe"
+	>
+		{#if user && isSubscriber(user.role)}
+			Subscribed
+		{:else}
+			Subscribe
+		{/if}
+	</a>
+	<a
+		class="inline-flex h-8 px-3 items-center rounded-full cursor-pointer transition-colors bg-black/10 hover:bg-violet-900 tracking-wider text-violet-900 hover:text-white group"
+		href="/settings/profile"
+	>
+		{#if user}
+			{user.name}
+		{:else}
+			Log in
+		{/if}
+	</a>
+</nav>

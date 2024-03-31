@@ -29,7 +29,7 @@
 		</hgroup>
 		<form method="POST" action="?/updatebio">
 			<textarea
-				class="input py-2 mb-2 w-full min-h-24 max-h-80 rounded"
+				class="py-2 mb-2 w-full min-h-24 max-h-80 input rounded"
                 name="bio"
 				placeholder="Write about yourself..."
 				maxlength="240"
@@ -59,7 +59,7 @@
 	<hr class="mb-4" />
 	<form method="POST" action="?/updatename">
 		<input
-			class="mb-4 w-full h-10 input"
+			class="mb-4 w-full input"
 			type="text"
 			name="name"
 			placeholder="Name"

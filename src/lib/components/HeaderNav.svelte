@@ -7,9 +7,9 @@
 	];
 </script>
 
-<nav class="flex px-4 md:justify-center text-cyan-800">
+<nav class="float-right flex gap-x-4 sm:gap-x-8 text-cyan-800">
 	{#each navLinks as { href, text }}
-		<a class="relative w-20 lg:w-28 xl:w-32 py-3 text-center group" {href}>
+		<a class="relative py-3 text-center group" {href}>
 			<span class="tracking-wider group-hover:text-cyan-600">
 				{text}
 			</span>

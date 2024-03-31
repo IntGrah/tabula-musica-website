@@ -16,15 +16,3 @@
 		<slot />
 	</div>
 </dialog>
-
-<!-- <style lang="postcss">
-	:global(input) {
-		@apply block h-10 px-4 w-full
-        text-gray-700
-        bg-black/5 focus:bg-black/10
-        outline-none rounded-lg
-        border border-transparent focus:border-gray-400
-        transition-all
-        placeholder:text-gray-500 focus:placeholder:text-gray-600;
-	}
-</style> -->

@@ -18,7 +18,7 @@
 {#if solid}
 	<style lang="postcss">
 		header {
-			@apply bg-amber-100/80 backdrop-blur-sm shadow-lg;
+			@apply bg-amber-100/80 backdrop-blur-sm shadow-md;
 		}
 	</style>
 {:else}

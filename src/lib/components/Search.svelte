@@ -4,19 +4,17 @@
 	let query = $page.url.searchParams.get('q');
 </script>
 
-<search class="absolute top-0 right-4 h-full py-1 max-xs:hidden">
-	<form class="h-full" action="/search">
+<search class="grow h-12 max-xs:hidden">
+	<form class="relative h-10 py-1" action="/search">
+        <img class="absolute left-2 inset-y-3 size-6" src="/icons/search.svg" alt=""/>
 		<input
 			name="q"
-            class="input w-36 focus:w-48 h-10"
+			class="w-full max-w-64 input !pl-10"
 			placeholder="Search articles..."
-			spellcheck="false"
-			autocorrect="off"
 			autocomplete="off"
-			autocapitalize="none"
 			required
-			on:invalid={(e) => e.preventDefault()}
 			value={query ?? ''}
+			on:invalid={(e) => e.preventDefault()}
 		/>
 	</form>
 </search>

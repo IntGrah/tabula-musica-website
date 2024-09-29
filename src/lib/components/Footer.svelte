@@ -1,9 +1,9 @@
 <footer class="bg-gray-900">
-	<div class="mx-auto max-w-6xl px-4 sm:px-8">
+	<div class="mx-auto max-w-6xl px-6">
 		<div class="grid sm:grid-cols-2 py-6 gap-8">
 			<hgroup class="grow">
 				<h4 class="mb-4 text-lg uppercase tracking-widest text-cyan-100">Subscribe</h4>
-				<p class="mb-4 text-gray-200">From £108/month</p>
+				<p class="mb-4 text-gray-200">From £0/month</p>
 				<div class="flex flex-wrap gap-4">
 					<button>Mailing list</button>
 					<button>Paper edition</button>
